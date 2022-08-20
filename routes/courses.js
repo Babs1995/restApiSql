@@ -39,12 +39,12 @@ router.post('/courses', asyncHandler(async (req, res) => {
      }
    }
  }));
- 
+
 // PUT route that will update the corresponding course and return a 204 HTTP status code and no content.
 
 router.put('/courses/:id', asyncHandler(async (req, res) => {
     try {
-      // declaring user and returning 201 status 
+      // declaring user and returning 204 status 
      const course = await Course.findByPk(req.params.id);
      course.update(req.body)
      res.status(204).end();
@@ -59,4 +59,16 @@ router.put('/courses/:id', asyncHandler(async (req, res) => {
  }));
 
  // DELETE route that will delete the corresponding course and return a 204 HTTP status code and no content.
+ router.delete('/courses/:id', asyncHandler(async (req, res) => {
+      // declaring user and returning 204 status 
+     const course = await Course.findByPk(req.params.id);
+     if(course) {
+        await course.destroy()
+        res.status(204).end();
+     } else {
+         res.status(404).json({ errors })
+     }
+     
+ }));
+
 module.exports = router;
