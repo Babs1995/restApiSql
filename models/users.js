@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      email: {
+      emailAddress: {
         type: DataTypes.STRING,
         allowNull: false,
       },

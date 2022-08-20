@@ -20,6 +20,21 @@ router.get('/users', asyncHandler(async (req, res) => {
   User.findAll()
       res.status(200).json(user);
 }));
+// post method
+router.post('/users', asyncHandler(async (req, res) => {
+   try {
+     // declaring user and returning 201 status 
+    const user = await User.create(req.body);
+    res.status(201).location("/").json(user).end();
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
+      const errors = error.errors.map(err => err.message);
+      res.status(400).json({ errors });   
+    } else {
+      throw error;
+    }
+  }
+}));
 
 
 module.exports = router;
