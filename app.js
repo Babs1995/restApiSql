@@ -3,6 +3,10 @@
 // load modules
 const express = require("express");
 const morgan = require("morgan");
+// const course = require("./routes/courses");
+// got code from Connecting to a database Instructions on https://sequelize.org/docs/v6/getting-started/
+const Sequelize = require("sequelize");
+const user = require("./routes/users")
 
 // variable to enable global error logging
 const enableGlobalErrorLogging =
@@ -10,9 +14,11 @@ const enableGlobalErrorLogging =
 
 // create the Express app
 const app = express();
+app.use(express.json())
 
-// got code from Connecting to a database Instructions on https://sequelize.org/docs/v6/getting-started/
-const { Sequelize } = require("sequelize");
+// adding routes 
+// app.use("/api", course)
+app.use("/api", user)
 
 // Option 2: Passing parameters separately (sqlite)
 const sequelize = new Sequelize({

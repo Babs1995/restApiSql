@@ -1,7 +1,7 @@
 // followed exercise for REST API auth Express
 "use strict";
-const Model = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+const { Model, DataTypes } = require("sequelize");
+module.exports = (sequelize) => {
   class User extends Model {}
   User.init(
     {
