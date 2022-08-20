@@ -19,11 +19,11 @@ module.exports = (sequelize) => {
       },
       estimatedTime: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       materialsNeeded: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
     },
     { sequelize }
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
       as: "user",
       foreignKey: {
         fieldName: "userId",
-        allowNull: false,
+        // allowNull: false,
       },
     });
   };
