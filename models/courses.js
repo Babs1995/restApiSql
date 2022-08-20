@@ -12,18 +12,26 @@ module.exports = (sequelize) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Title cannot be empty"
+          }
+        }
       },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Description cannot be empty"
+          }
+        }
       },
       estimatedTime: {
-        type: DataTypes.STRING,
-        // allowNull: false,
+        type: DataTypes.STRING
       },
       materialsNeeded: {
-        type: DataTypes.STRING,
-        // allowNull: false,
+        type: DataTypes.STRING
       },
     },
     { sequelize }
@@ -35,7 +43,7 @@ module.exports = (sequelize) => {
       as: "user",
       foreignKey: {
         fieldName: "userId",
-        // allowNull: false,
+        allowNull: false,
       },
     });
   };
