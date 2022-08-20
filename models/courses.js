@@ -1,0 +1,43 @@
+"use strict";
+const Model = require("sequelize");
+module.exports = (Sequelize, DataTypes) => {
+  class Course extends Model {}
+  Course.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      estimatedTime: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      materialsNeeded: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    },
+    { sequelize }
+  );
+//   userId (created in the model associations with the foreignKey property, and equals the id from the Users table)
+  Course.associate = (models) => {
+    Course.belongsTo(models.User, {
+        // alias
+      as: "user",
+      foreignKey: {
+        fieldName: "userId",
+        allowNull: false,
+      },
+    });
+  };
+  return Course;
+};
