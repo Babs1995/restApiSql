@@ -25,9 +25,9 @@ const sequelize = new Sequelize({
   await sequelize.sync();
   try {
     await sequelize.authenticate();
-    console.log("Connection to database was successful!");
+    console.log("Yay!!!!!! Connexxxxion to db is finally working!");
   } catch (error) {
-    console.log('There was an error connecting to the database.', error);
+    console.log('Whoops!!!! Something went terribly wrong! Are you okay???', error);
     if (error.name === "SequelizeValidationError") {
       const errors = error.errors.map((err) => err.message);
       console.error("Validation errors: ", errors);
@@ -37,24 +37,24 @@ const sequelize = new Sequelize({
   }
 })();
 
-// setup morgan which gives us http request logging
+// necessary for morgan for http request logging
 app.use(morgan("dev"));
 
-// setup a friendly greeting for the root route
+// human readable message for root routes
 app.get("/", (req, res) => {
   res.json({
-    message: "Welcome to the REST API project!",
+    message: "Welcome to my very own SQL DB!",
   });
 });
 
-// send 404 if no other route matched
+// generates error messages and will default to a 404 error if nothing else
 app.use((req, res) => {
   res.status(404).json({
     message: "Route Not Found",
   });
 });
 
-// setup a global error handler
+// generates a global error handler
 app.use((err, req, res, next) => {
   if (enableGlobalErrorLogging) {
     console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
@@ -66,10 +66,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-// set our port
+// code to instruct the browser which port I will be using 
 app.set("port", process.env.PORT || 5000);
 
-// start listening on our port
+// express server port address
 const server = app.listen(app.get("port"), () => {
   console.log(`Express server is listening on port ${server.address().port}`);
 });
