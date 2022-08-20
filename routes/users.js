@@ -1,9 +1,9 @@
 const express = require('express');
 // Construct a router instance.
 const router = express.Router();
-// const asyncHandler = require('./middleware/async-handler');
 const User = require('../models').User;
-// const { authenticateUser } = require('./middleware/auth-user');
+
+// global async function to catch errors in each route
 function asyncHandler (cb) {
   return async (req, res, next) => {
     try {
